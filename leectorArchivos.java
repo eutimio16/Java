@@ -28,6 +28,7 @@ public class leectorArchivos{
 
 			Calculator2 usuario = null;
 			String Linea = bf.readLine();
+			
 			StringTokenizer st = null;
 			int lineNumber = 0, tokenNumber=0;
 			String nombre="hola", 
@@ -43,10 +44,10 @@ public class leectorArchivos{
 					retiro="hola",
 					transporteEscolar="hola",
 					nivelEducativo="hola",
-					colegiaturaAnual="hola";
-			 
+					colegiaturaAnual="hola";			 
 
-			while(Linea  != null){
+			while(bf.readLine() != null){
+				
 				st = new StringTokenizer(Linea,",");
 				
 				for(int i=0 ;i <=13; i++){
@@ -125,7 +126,7 @@ public class leectorArchivos{
 				
 				
 				
-				bf.readLine();
+				
 			}
 			
 			bf.close();
