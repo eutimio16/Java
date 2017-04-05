@@ -7,10 +7,12 @@ import java.awt.event.ItemListener;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class controlCalculator extends JPanel implements ActionListener{
 
@@ -48,13 +50,16 @@ public class controlCalculator extends JPanel implements ActionListener{
 					JLtransporteEscolar,
 					JLcolegiaturaTotal,		
 					JLnivelEscolar;
-	private JButton ok;
+	private JButton ok,
+					JBabrir;
+	
+	private JFileChooser fc;
 	
 	
 	
 	public controlCalculator(){
 		super();
-		this.setPreferredSize(new Dimension(310,200));
+		this.setPreferredSize(new Dimension(300,100));
 		this.setBackground(Color.LIGHT_GRAY);
 		
 		this.JTnombre = new JTextField(15);
@@ -135,6 +140,7 @@ public class controlCalculator extends JPanel implements ActionListener{
 		this.JLnivelEscolar = new JLabel("Nivel Escolar:");
 		this.add(JLnivelEscolar);
 		JCnivelEscolar = new JComboBox();
+		JCnivelEscolar.addItem("No quiero deducir colegiatura");
 		JCnivelEscolar.addItem("Preescolar");
 		JCnivelEscolar.addItem("Primaria");
 		JCnivelEscolar.addItem("Secundaria");
@@ -143,27 +149,40 @@ public class controlCalculator extends JPanel implements ActionListener{
 		
 		JCnivelEscolar.addItemListener( 
 				new ItemListener(){
-					public void itemStateChanged(ItemEvent e) {
+					public void itemStateChanged(ItemEvent e) {	
 						if(e.getStateChange()== ItemEvent.SELECTED){
-								if(JCnivelEscolar.getSelectedIndex()==0){
+							
+							if(JCnivelEscolar.getSelectedIndex()==0){
+								SnivelEducativo="nada";
+							}
+
+								if(JCnivelEscolar.getSelectedIndex()==1){
 										SnivelEducativo="PREESCOLAR";
 									}
 							
-								if(JCnivelEscolar.getSelectedIndex()==1){
+								if(JCnivelEscolar.getSelectedIndex()==2){
 										SnivelEducativo="PRIMARIA";
 									}
-								if(JCnivelEscolar.getSelectedIndex()==2){
+								if(JCnivelEscolar.getSelectedIndex()==3){
 										SnivelEducativo="SECUNDARIA";
 									}
-								if(JCnivelEscolar.getSelectedIndex()==3){
+								if(JCnivelEscolar.getSelectedIndex()==4){
 										SnivelEducativo="PREPARATORIA";
 									}
-								if(JCnivelEscolar.getSelectedIndex()==4){
+								if(JCnivelEscolar.getSelectedIndex()==5){
 									SnivelEducativo="TECNICO";
 									}
+								else{
+									JCnivelEscolar.setSelectedIndex(0);
+									
+								}
 						}
 						
-					}
+							
+							
+						
+						
+					}//itemstatechanged
 					
 				}
 				
@@ -183,6 +202,13 @@ public class controlCalculator extends JPanel implements ActionListener{
 		
 		this.ok = new JButton("Aceptar");
 		this.add(ok);
+		
+		
+		
+		this.JBabrir = new JButton("Abrir Archivo");
+		this.JBabrir.addActionListener(this);
+		this.add(JBabrir);
+		
 		ok.addActionListener(this);
 		
 		this.setVisible(true);
@@ -193,7 +219,8 @@ public class controlCalculator extends JPanel implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		try{
 			if(e.getSource()==ok){
-				calcular = new Calculator2(Double.parseDouble(JTaguinaldo.getText()),
+				
+				calcular = new Calculator2(Double.parseDouble(JTsueldoMensual.getText()),
 										   Double.parseDouble(JTaguinaldo.getText()),
 										   Double.parseDouble(JTprimaVac.getText()),
 										   Double.parseDouble(JTgastosMedicos.getText()),
@@ -206,10 +233,21 @@ public class controlCalculator extends JPanel implements ActionListener{
 										   Double.parseDouble(JTcolegiaturaTotal.getText()),
 										  SnivelEducativo );
 				
-								JOptionPane.showMessageDialog(null,calcular.toString(), "Resultados", 1);	
+								JOptionPane.showMessageDialog(null,"Nombre: " +JTnombre.getText()+ "\n" +
+																			"RFC: " + JTrfc.getText() + "\n" + 
+																			   calcular.toString(), 
+																			   	"Resultados", 1);	
 								}
 							}catch(NumberFormatException error){
 									JOptionPane.showMessageDialog(null, "NO SE INTRODUJERON DATOS CORRECTAMENTE Y/O QUEDARON LUGARES EN BLANCO", "ERROR", 1);
+				
+			}
+		
+			if(e.getSource()==JBabrir){
+				this.fc= new JFileChooser();
+				FileNameExtensionFilter filtro = new FileNameExtensionFilter("Solo csv","csv");
+				fc.setFileFilter(filtro);
+				fc.setVisible(true);
 				
 			}
 				

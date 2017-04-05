@@ -309,17 +309,18 @@ public class Calculator2 {
 			   "Deducciones Permitidas: "+this.getDeduccionesPermitidas() + ",\n " +
 			   "Monto a calcular ISR "+this.getMontoCalcIsr() + ",\n " +
 			   "Cuota Fija: "+this.getCuotaFija()+ ",\n " +
+			   "Total de Excedente "+this.getExcedente()+",\n"+
 			   "Total a pagar de Excedente: "+this.getPagoExcedente() + ",\n" +
 			   "Total a pagar de Impuestos: "+this.getTotalPagar() + " ."
 			   ;
 	}
 
 	
-	public static void main(String[] args) {
-		Calculator2 test;
-		test = new Calculator2(25000.00,30000.00, 6000,50000 ,0, 30000, 20000, 0, 5000, 0, 25000,"preparatoria"
-				+ "");
-		System.out.println(test.toString());
-	}
+//	public static void main(String[] args) {
+//		Calculator2 test;
+//		test = new Calculator2(25000.00,30000.00, 6000,50000 ,0, 30000, 20000, 0, 5000, 0, 25000,"preparatoria"
+//				+ "");
+//		System.out.println(test.toString());
+	//}
 
 }
