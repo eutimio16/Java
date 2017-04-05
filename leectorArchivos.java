@@ -23,12 +23,11 @@ public class leectorArchivos{
 	public static void leer(String ruta){
 		try {
 			
-			BufferedReader bf;
-			bf= new BufferedReader(new FileReader(ruta));
+			BufferedReader bf= new BufferedReader(new FileReader(ruta));
 
 
 			Calculator2 usuario = null;
-			String Linea;
+			String Linea = bf.readLine();
 			StringTokenizer st = null;
 			int lineNumber = 0, tokenNumber=0;
 			String nombre="hola", 
@@ -47,9 +46,7 @@ public class leectorArchivos{
 					colegiaturaAnual="hola";
 			 
 
-			while((Linea = bf.readLine()) != null){
-				lineNumber++;
-				
+			while(Linea  != null){
 				st = new StringTokenizer(Linea,",");
 				
 				for(int i=0 ;i <=13; i++){
@@ -107,26 +104,30 @@ public class leectorArchivos{
 					
 					else if(i ==13){
 						System.out.println(colegiaturaAnual = st.nextToken());
+						
+						 usuario=new Calculator2(Double.parseDouble(sueldoMensual),
+								  Double.parseDouble(aguinaldoRecibido),
+								  Double.parseDouble(primaRecibida),
+								  Double.parseDouble(gastosMedicos),
+								  Double.parseDouble(gastosFunerarios),
+								  Double.parseDouble(sgmm),
+								  Double.parseDouble(hipotecarios),
+								  Double.parseDouble(donativos),
+								  Double.parseDouble(retiro),
+								  Double.parseDouble(transporteEscolar),
+								  Double.parseDouble(colegiaturaAnual),
+								  nivelEducativo);
+									System.out.println(usuario.toString());
+						
 					}
 					
 				}
 				
-				usuario = new Calculator2(Double.parseDouble(sueldoMensual),
-										  Double.parseDouble(aguinaldoRecibido),
-										  Double.parseDouble(primaRecibida),
-										  Double.parseDouble(gastosMedicos),
-										  Double.parseDouble(gastosFunerarios),
-										  Double.parseDouble(sgmm),
-										  Double.parseDouble(hipotecarios),
-										  Double.parseDouble(donativos),
-										  Double.parseDouble(retiro),
-										  Double.parseDouble(transporteEscolar),
-										  Double.parseDouble(colegiaturaAnual),
-										  nivelEducativo);
-				String a=usuario.toString();
-				System.out.println(a);
 				
+				
+				bf.readLine();
 			}
+			
 			bf.close();
 
 
