@@ -48,21 +48,23 @@ public class leectorArchivos{
 					transporteEscolar="hola",
 					nivelEducativo="hola",
 					colegiaturaAnual="hola";	
-		/*	FileWriter fr= new FileWriter(JOptionPane.showInputDialog("Dame la ruta para guardar los resultados"));
-			PrintWriter pw = new PrintWriter(fr);
-			*/
+			PrintWriter pw = new PrintWriter(new FileWriter("C:\\Users\\eutimio\\Desktop\\datos.txt"));
+			
 
 			while(bf.readLine() != null){
 				
 				st = new StringTokenizer(Linea,",");
+				System.out.println(ruta);
 				
 				for(int i=0 ;i <=13; i++){
 					if(i == 0){
 						System.out.println(nombre = st.nextToken());
+						pw.println(nombre);
 					}
 					
 					else if(i ==1){
 						System.out.println(rfc = st.nextToken());
+						pw.println(rfc);
 					}
 					
 					else if(i ==2){
@@ -125,7 +127,7 @@ public class leectorArchivos{
 								  Double.parseDouble(colegiaturaAnual),
 								  nivelEducativo);
 						 	
-									JOptionPane.showMessageDialog(null,usuario.toString());
+									pw.println(usuario.toString());
 						
 					}
 					
@@ -135,7 +137,7 @@ public class leectorArchivos{
 				
 				
 			}
-			//pw.close();
+			pw.close();
 			bf.close();
 
 
