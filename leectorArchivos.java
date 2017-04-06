@@ -48,9 +48,9 @@ public class leectorArchivos{
 					transporteEscolar="hola",
 					nivelEducativo="hola",
 					colegiaturaAnual="hola";	
-			FileWriter fr= new FileWriter(JOptionPane.showInputDialog("Dame la ruta para guardar los resultados"));
+		/*	FileWriter fr= new FileWriter(JOptionPane.showInputDialog("Dame la ruta para guardar los resultados"));
 			PrintWriter pw = new PrintWriter(fr);
-			
+			*/
 
 			while(bf.readLine() != null){
 				
@@ -125,7 +125,7 @@ public class leectorArchivos{
 								  Double.parseDouble(colegiaturaAnual),
 								  nivelEducativo);
 						 	
-									pw.println(usuario.toString());
+									JOptionPane.showMessageDialog(null,usuario.toString());
 						
 					}
 					
@@ -135,7 +135,7 @@ public class leectorArchivos{
 				
 				
 			}
-			pw.close();
+			//pw.close();
 			bf.close();
 
 
