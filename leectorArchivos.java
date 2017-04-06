@@ -3,10 +3,13 @@ import java.io.BufferedReader;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.StringTokenizer;
 
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 
 public class leectorArchivos{
 	private StringTokenizer st;
@@ -44,7 +47,10 @@ public class leectorArchivos{
 					retiro="hola",
 					transporteEscolar="hola",
 					nivelEducativo="hola",
-					colegiaturaAnual="hola";			 
+					colegiaturaAnual="hola";	
+			FileWriter fr= new FileWriter(JOptionPane.showInputDialog("Dame la ruta para guardar los resultados"));
+			PrintWriter pw = new PrintWriter(fr);
+			
 
 			while(bf.readLine() != null){
 				
@@ -118,17 +124,18 @@ public class leectorArchivos{
 								  Double.parseDouble(transporteEscolar),
 								  Double.parseDouble(colegiaturaAnual),
 								  nivelEducativo);
-									System.out.println(usuario.toString());
+						 	
+									pw.println(usuario.toString());
 						
 					}
 					
 				}
 				
-				
+				bf.readLine();
 				
 				
 			}
-			
+			pw.close();
 			bf.close();
 
 
